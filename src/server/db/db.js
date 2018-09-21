@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
-
 mongoose.Promise = require('bluebird');
 
-
 mongoose.connect('mongodb://localhost:27017/pinduoduo', {
-    useMongoClient: true,
+    useNewUrlParser: true
 });
 
 let userSchema = new mongoose.Schema({
     userInfo: {type: Object, required: true},
     tel: {type: String},
-
 });
 
 let adminSchema = new mongoose.Schema({
@@ -35,8 +32,11 @@ let goodsSchema = new mongoose.Schema({
 
 let Models = {
     Admin: mongoose.model('Admin', adminSchema),
+    Users: mongoose.model('Users', userSchema),
     Goods: mongoose.model('Goods', goodsSchema),
     Images: mongoose.model('Images', imagesSchema)
 };
+
+//new Models.Admin({userName: 'biubiupiu', password: 'biubiupiu'}).save();
 
 export default Models;

@@ -1,12 +1,13 @@
 {
-  "name": "vue-express-dev-boilerplate",
+  "name": "pinserver",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "webpack"
   },
-  "author": "Shunyang Li",
+  "author": "biubiupiu",
   "license": "MIT",
   "devDependencies": {
     "axios": "^0.18.0",
@@ -21,10 +22,14 @@
     "css-loader": "^0.26.4",
     "express": "^4.14.0",
     "file-loader": "^0.9.0",
+    "formidable": "^1.2.1",
     "iview": "^2.14.3",
     "jade": "^1.11.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.16",
     "morgan": "^1.7.0",
     "nodemon": "^1.11.0",
+    "request": "^2.88.0",
     "serve-favicon": "^2.3.2",
     "style-loader": "^0.23.0",
     "url-loader": "^0.5.7",
@@ -38,7 +43,6 @@
     "vuex": "^3.0.1",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0",
-    "webpack-hot-middleware": "^2.15.0",
-    "formidable": "^1.2.1"
+    "webpack-hot-middleware": "^2.15.0"
   }
 }

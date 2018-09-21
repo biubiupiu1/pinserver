@@ -1,4 +1,4 @@
-import db from "../db/db";
+import db from "../../db/db";
 
 module.exports = function (req, res) {
 
