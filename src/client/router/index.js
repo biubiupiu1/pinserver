@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '../pages/Login.vue'
 import Index from '../pages/Index.vue'
 import Topics from '../pages/index/Topics.vue'
+import AddGoods from '../pages/AddGoods.vue'
 
 Vue.use(Router);
 
@@ -12,11 +13,18 @@ let router = new Router({
             path: '/',
             name: 'Index',
             component: Index,
-            redirect: '/topics/online',
+            redirect: '/addgoods',
             children: [
                 {
                     path: '/topics/:type',
                     name: 'Topics', component: Topics,
+                    meta: {
+                        requireAuth: true,
+                    },
+                },
+                {
+                    path: '/addgoods',
+                    name: 'AddGoods', component: AddGoods,
                     meta: {
                         requireAuth: true,
                     },

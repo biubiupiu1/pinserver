@@ -1,7 +1,7 @@
 import db from "../db/db";
-const jwt = require('jsonwebtoken');
+import {secret} from "../config";
 
-const secret = 'BIUBIUPIUQING';
+const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res) {
 

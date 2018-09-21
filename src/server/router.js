@@ -14,4 +14,27 @@ router.get('/', function(req, res, next) {
  */
 router.post('/api/login', controllers.login);
 
+/**
+ * /api/getgoods 获取商品数目
+ * @param {Number} limit 获取的数目.
+ */
+router.post('/api/getgoods', controllers.getGoods);
+
+/**
+ * /api/addgoods 添加商品
+ * @param {string} title 商品标题.
+ * @param {string} content 商品介绍.
+ * @param {number} price 商品价格.
+ * @param {string} imaPath 图片路径.
+ * @param {object} user 用户信息.
+ */
+router.post('/api/addgoods', controllers.addGoods);
+
+/**
+ * /api/upload 上传图片
+ * @param {stream}  图片数据流.
+ */
+router.post('/api/upload', controllers.upload);
+
+
 export default router
