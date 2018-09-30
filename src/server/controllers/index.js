@@ -1,6 +1,10 @@
 const _ = require('lodash');
 const fs = require('fs');
 const path = require('path');
+import {validateToken} from "../lib/utils";
+
+const Wrap = fn => (req, res) => fn(req, res, validateToken)
+
 
 /**
  * 映射 d 文件夹下的文件为模块
@@ -18,7 +22,7 @@ const mapDir = d => {
     // 映射文件
     files.forEach(file => {
         if (path.extname(file) === '.js') {
-            tree[path.basename(file, '.js')] = require(path.join(d, file))
+            tree[path.basename(file, '.js')] = Wrap(require(path.join(d, file)))
         }
     })
 

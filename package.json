@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
+    "debug": "nodemon --inspect index.js 80",
     "build": "webpack"
   },
   "author": "biubiupiu",
@@ -41,7 +42,7 @@
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.1.10",
     "vuex": "^3.0.1",
-    "webpack": "^1.14.0",
+    "webpack": "^2.6.1",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.15.0"
   }

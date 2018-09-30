@@ -1,14 +1,18 @@
 import db from "../../db/db";
 
-module.exports = function (req, res) {
+module.exports = async function (req, res, validateToken) {
 
     let limit = req.body.limit || 10;
 
-    new db.Goods.find({}).limit(limit).save((err, res) => {
+    let expire = await validateToken(req);
+
+    db.Goods.find({}).limit(limit).exec((err, result) => {
         if (err)
             return res.status(500).send();
 
-        res.send({code: 200, data: res});
+        let statusCode = !!expire ? 200 : 401;
+        console.log(result);
+        res.status(statusCode).send({code: 200, data: result});
     })
 
 };

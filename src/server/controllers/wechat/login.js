@@ -39,8 +39,10 @@ module.exports = function (req, res) {
 
                 } else {
                     new db.Users({openid, userInfo}).save(function (err) {
-                        if (err)
+                        if (err) {
+                            console.log(err);
                             return res.status(500).send();
+                        }
                         onSuccess(res, openid);
                     })
                 }

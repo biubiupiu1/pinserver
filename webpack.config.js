@@ -1,6 +1,12 @@
 var path = require('path')
 var webpack = require('webpack')
 
+process.noDeprecation = true
+
+function resolve(dir) {
+    return path.join(__dirname, '..', dir)
+}
+
 module.exports = {
     entry: [
         "webpack-hot-middleware/client",
@@ -11,51 +17,46 @@ module.exports = {
         publicPath: '/javascripts/',
         filename: 'build.js'
     },
+    stats: 'errors-only',
     resolve: {
-        extensions: ['', '.js', '.vue'],
-        alias:{
-            'vue$':'vue/dist/vue.js'
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+            'vue$': 'vue/dist/vue.js',
+            '@': resolve('src')
         }
     },
-    resolveLoader: {
-        root: path.join(__dirname, 'node_modules')
-    },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 exclude: /node_modules/,
+                include: path.join(__dirname, './src/client'),
                 query: {presets: ['es2015']}
             },
             {
                 test: /\.vue$/,
-                loader: 'vue'
-            },
-            {
-                test: /\.json$/,
-                loader: 'json'
+                loader: 'vue-loader'
             },
             {
                 test: /.css$/,
-                loader: 'style!css'
+                use: [
+                    "style-loader",
+                    "css-loader",
+                ]
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url'
+                loader: 'url-loader'
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url',
-                query: {
-                    limit: 10000,
-                    name: '[name].[ext]?[hash:7]'
-                }
+                loader: 'url-loader',
             },
         ]
     },
     devtool: 'eval-source-map',
     plugins: [
         new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
 }

@@ -1,3 +1,5 @@
 const secret = 'BIUBIUPIUQING';
 
-export {secret};
+const port = 4000;
+
+export {secret, port};
