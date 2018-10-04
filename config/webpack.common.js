@@ -1,15 +1,16 @@
-import path from 'path';
+const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
 
-export default {
-    mode: "production",
-    entry: path.join(__dirname, '../src/client/index.js'),
+module.exports = {
+    entry: [
+        path.join(__dirname, '../src/client/index.js'),
+    ],
     output: {
-        path: path.join(__dirname, '../src/server/public/js/'),
+        path: path.join(__dirname, '../src/server/public/'),
         filename: 'bundle.js'
     },
     resolve: {
@@ -50,10 +51,6 @@ export default {
         ]
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
     ],
-    stats: {
-        colors: true
-    },
-    devtool: 'source-map'
 };

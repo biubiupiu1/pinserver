@@ -9,7 +9,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 
 import router from './router'
-import config from '../../config/webpack.config.dev'
+import config from '../../config/webpack.dev'
 import {port} from "./config";
 
 const app = express()
@@ -24,7 +24,6 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
-app.use('/public', express.static(path.join(__dirname, 'public/')))
 if (app.get('env') === 'development') {
 
     const compiler = webpack(config)
@@ -37,6 +36,7 @@ if (app.get('env') === 'development') {
     app.use(webpackHotMiddleware(compiler))
 
 }
+app.use('/public', express.static(path.join(__dirname, 'public/')))
 
 app.use('/', router)
 
