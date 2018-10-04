@@ -1,4 +1,4 @@
-import db from "../../db/db";
+import db from "../../db";
 import {secret} from "../../config/index";
 
 const jwt = require('jsonwebtoken');

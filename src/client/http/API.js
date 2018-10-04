@@ -1,5 +1,6 @@
 export default {
     login: '/api/admin/login',
     upload: '/api/upload',
-    addGoods: '/api/addgoods'
+    addGoods: '/api/addgoods',
+    getGoods: '/api/getgoods'
 }

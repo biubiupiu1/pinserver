@@ -1,4 +1,4 @@
-import db from "../../db/db";
+const db = require('../../db');
 
 module.exports = function (req, res) {
 
@@ -11,11 +11,11 @@ module.exports = function (req, res) {
     if (!title || !content || !price || !imgPath || !user)
         return res.send({code: 101, msg: '参数缺少'});     //参数缺少（code 101）
 
-    new db.Goods({title, content, price, imgPath, user}).save(err => {
+    new db.goods({title, content, price, imgPath, user}).save(err => {
         if (err)
             return res.status(500).send();
 
-        db.Images.deleteOne({imgPath});
+        db.images.deleteOne({imgPath});
 
         res.send({code: 200})
     })

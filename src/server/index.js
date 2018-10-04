@@ -9,7 +9,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 
 import router from './router'
-import config from '../../webpack.config'
+import config from '../../config/webpack.config.dev'
 import {port} from "./config";
 
 const app = express()
@@ -24,17 +24,19 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
-app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use('/public', express.static(path.join(__dirname, 'public/')))
+if (app.get('env') === 'development') {
 
-const methods = [ 'get', 'post', 'put', 'delete' ];
-const compiler = webpack(config)
+    const compiler = webpack(config)
 
-app.use(webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath,
-    stats: {colors: true}
-}))
+    app.use(webpackDevMiddleware(compiler, {
+        publicPath: config.output.publicPath,
+        stats: {colors: true}
+    }))
 
-app.use(webpackHotMiddleware(compiler))
+    app.use(webpackHotMiddleware(compiler))
+
+}
 
 app.use('/', router)
 
@@ -55,6 +57,8 @@ app.use(function (err, req, res, next) {
     })
 })
 
-app.listen(port)
+app.listen(port, () => {
+    console.log(`listen as ${port}`)
+})
 
 export default app

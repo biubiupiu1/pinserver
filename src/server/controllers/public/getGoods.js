@@ -1,4 +1,4 @@
-import db from "../../db/db";
+import db from "../../db";
 
 module.exports = async function (req, res, validateToken) {
 
@@ -10,8 +10,9 @@ module.exports = async function (req, res, validateToken) {
         if (err)
             return res.status(500).send();
 
+        res.setHeader('Cache-control', 'public,max-age=86400');
+
         let statusCode = !!expire ? 200 : 401;
-        console.log(result);
         res.status(statusCode).send({code: 200, data: result});
     })
 

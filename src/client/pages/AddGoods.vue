@@ -98,7 +98,7 @@
             }
         },
         created() {
-
+            this.getGoods();
         },
         methods: {
             handleSubmit(name) {
@@ -132,6 +132,16 @@
                     }
                 }).catch(err => {
                     this.$Message.error('提交错误');
+                })
+            },
+            getGoods() {
+                this.$http({
+                    method: 'post',
+                    url: API.getGoods,
+                }).then(res => {
+                    console.log(res);
+                }).catch(err => {
+                    console.log(err);
                 })
             }
         }

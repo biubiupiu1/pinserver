@@ -1,5 +1,4 @@
-import db from "../../db/db";
-import {port} from "../../config";
+import db from "../../db";
 
 const path = require('path');
 const formidable = require('formidable');
