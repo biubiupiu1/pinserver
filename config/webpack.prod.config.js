@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 
-process.noDeprecation = true
+process.noDeprecation = true;
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
@@ -9,12 +9,10 @@ function resolve(dir) {
 
 module.exports = {
     entry: [
-        "webpack-hot-middleware/client",
         path.join(__dirname, 'src/client/index.js')
     ],
     output: {
-        path: path.join(__dirname, 'src/server/public/javascripts/'),
-        publicPath: '/javascripts/',
+        path: path.join(__dirname, 'src/server/public/'),
         filename: 'build.js'
     },
     stats: 'errors-only',
@@ -57,6 +55,5 @@ module.exports = {
     },
     devtool: 'eval-source-map',
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
     ],
 }
